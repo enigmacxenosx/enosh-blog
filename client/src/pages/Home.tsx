@@ -14,7 +14,7 @@ const PHOTOS = {
   hero: "/enosh-1.jpg",       // street style shot
   shades: "/enosh-2.jpg",     // sunglasses shot
   portrait: "/enosh-3.jpg",   // glasses portrait
-  hustle: "/enosh-4.jpg",     // money/grind
+  hustle: "/enosh-4.png",     // money/grind
 };
 
 const LOGO = "/enosh-logo.png";
