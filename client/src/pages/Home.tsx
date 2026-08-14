@@ -6,6 +6,7 @@
  * Photo treatment: cinematic crops, warm shadowed grading, consistent caption styling
  */
 import { useEffect, useRef, useState } from "react";
+import { Link } from "wouter";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Instagram, MessageCircle, Facebook, ArrowDown, ExternalLink, MapPin, Briefcase } from "lucide-react";
 
@@ -56,6 +57,9 @@ function NavBar() {
           </span>
         </a>
         <div className="hidden md:flex items-center gap-8">
+          <Link href="/enosx" className="text-[#a09a90] hover:text-[#c9a96e] transition-colors duration-300 text-[11px] tracking-[0.25em] uppercase" style={{ fontFamily: "var(--font-mono)" }}>
+            Enosx
+          </Link>
           <a href="#about" className="text-[#a09a90] hover:text-[#c9a96e] transition-colors duration-300 text-[11px] tracking-[0.25em] uppercase" style={{ fontFamily: "var(--font-mono)" }}>
             About
           </a>
@@ -456,9 +460,10 @@ function ContactSection() {
               { icon: Instagram, label: "Instagram", handle: "@engima_cx", href: "https://instagram.com/engima_cx" },
               { icon: MessageCircle, label: "WhatsApp", handle: "0798 303 978", href: "https://wa.me/254798303978" },
               { icon: Facebook, label: "Facebook", handle: "Enosx Aura", href: "https://facebook.com/enosxaura" },
-              { icon: ExternalLink, label: "EX Technologies", handle: "Tech & Innovation", href: "https://enosxtechnologies.vercel.app" },
+              { icon: ExternalLink, label: "EX Technologies", handle: "Tech & Innovation", href: "/enosx", internal: true },
             ].map((social, i) => (
-              <a
+              social.internal ? (
+              <Link
                 key={i}
                 href={social.href}
                 className="flex items-center gap-5 p-5 border border-white/5 hover:border-[#c9a96e]/30 bg-[#0f0f0f] transition-all duration-300 group"
@@ -471,7 +476,25 @@ function ContactSection() {
                   <p className="text-[#a09a90] text-[11px] tracking-wider" style={{ fontFamily: "var(--font-mono)" }}>{social.handle}</p>
                 </div>
                 <ArrowDown className="w-4 h-4 text-[#c9a96e]/30 group-hover:text-[#c9a96e] transition-colors duration-300 rotate-[-45deg]" />
+              </Link>
+              ) : (
+              <a
+                key={i}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-5 p-5 border border-white/5 hover:border-[#c9a96e]/30 bg-[#0f0f0f] transition-all duration-300 group"
+              >
+                <div className="w-10 h-10 rounded-full bg-[#141414] flex items-center justify-center group-hover:bg-[#c9a96e]/10 transition-colors duration-300">
+                  <social.icon className="w-4 h-4 text-[#c9a96e]" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-[#f0ece4] text-sm font-medium" style={{ fontFamily: "var(--font-body)" }}>{social.label}</p>
+                  <p className="text-[#a09a90] text-[11px] tracking-wider" style={{ fontFamily: "var(--font-mono)" }}>{social.handle}</p>
+                </div>
+                <ArrowDown className="w-4 h-4 text-[#c9a96e]/30 group-hover:text-[#c9a96e] transition-colors duration-300 rotate-[-45deg]" />
               </a>
+              )
             ))}
           </motion.div>
         </div>

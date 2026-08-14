@@ -252,6 +252,9 @@ export default function Gallery() {
             </span>
           </Link>
           <div className="flex items-center gap-6">
+            <Link href="/enosx" className="flex items-center gap-2 text-[#a09a90] hover:text-[#c9a96e] transition-colors">
+              <span className="text-[11px] tracking-[0.2em] uppercase" style={{ fontFamily: "var(--font-mono)" }}>Enosx</span>
+            </Link>
             <Link href="/" className="flex items-center gap-2 text-[#a09a90] hover:text-[#c9a96e] transition-colors">
               <ArrowLeft className="w-4 h-4" />
               <span className="text-[11px] tracking-[0.2em] uppercase" style={{ fontFamily: "var(--font-mono)" }}>Home</span>
