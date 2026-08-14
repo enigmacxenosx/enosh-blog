@@ -7,7 +7,7 @@
  */
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { Instagram, Twitter, ArrowDown, ExternalLink, MapPin, Sparkles } from "lucide-react";
+import { Instagram, MessageCircle, Facebook, ArrowDown, ExternalLink, MapPin, Briefcase } from "lucide-react";
 
 /* ─── ASSETS ─── */
 const PHOTOS = {
@@ -436,6 +436,10 @@ function ContactSection() {
             <p className="text-[#a09a90] text-[15px] leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
               Collabs, conversations, or just checking in — I'm here. Find me wherever you are.
             </p>
+            <div className="flex items-center gap-2 pt-1">
+              <Briefcase className="w-3.5 h-3.5 text-[#c9a96e]/60" />
+              <p className="text-[#a09a90] text-xs" style={{ fontFamily: "var(--font-mono)" }}>EX Technologies</p>
+            </div>
             <div className="flex items-center gap-2 pt-2">
               <MapPin className="w-3.5 h-3.5 text-[#c9a96e]/60" />
               <p className="text-[#a09a90] text-xs" style={{ fontFamily: "var(--font-mono)" }}>Nairobi, Kenya</p>
@@ -449,9 +453,10 @@ function ContactSection() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
           >
             {[
-              { icon: Instagram, label: "Instagram", handle: "@enosh", href: "#" },
-              { icon: Twitter, label: "X (Twitter)", handle: "@enosh", href: "#" },
-              { icon: ExternalLink, label: "Linktree", handle: "Link in bio", href: "#" },
+              { icon: Instagram, label: "Instagram", handle: "@engima_cx", href: "https://instagram.com/engima_cx" },
+              { icon: MessageCircle, label: "WhatsApp", handle: "0798 303 978", href: "https://wa.me/254798303978" },
+              { icon: Facebook, label: "Facebook", handle: "Enosx Aura", href: "https://facebook.com/enosxaura" },
+              { icon: ExternalLink, label: "EX Technologies", handle: "Tech & Innovation", href: "https://enosxtechnologies.vercel.app" },
             ].map((social, i) => (
               <a
                 key={i}
@@ -489,11 +494,14 @@ function Footer() {
             © 2026 ENOSH. ALL RIGHTS RESERVED.
           </p>
           <div className="flex gap-5">
-            <a href="#" className="text-[#a09a90] hover:text-[#c9a96e] transition-colors duration-300">
+            <a href="https://instagram.com/engima_cx" target="_blank" rel="noopener noreferrer" className="text-[#a09a90] hover:text-[#c9a96e] transition-colors duration-300">
               <Instagram className="w-4 h-4" />
             </a>
-            <a href="#" className="text-[#a09a90] hover:text-[#c9a96e] transition-colors duration-300">
-              <Twitter className="w-4 h-4" />
+            <a href="https://wa.me/254798303978" target="_blank" rel="noopener noreferrer" className="text-[#a09a90] hover:text-[#c9a96e] transition-colors duration-300">
+              <MessageCircle className="w-4 h-4" />
+            </a>
+            <a href="https://facebook.com/enosxaura" target="_blank" rel="noopener noreferrer" className="text-[#a09a90] hover:text-[#c9a96e] transition-colors duration-300">
+              <Facebook className="w-4 h-4" />
             </a>
           </div>
         </div>
