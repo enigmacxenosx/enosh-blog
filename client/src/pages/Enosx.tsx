@@ -29,8 +29,8 @@ import {
 } from "lucide-react";
 
 /* ─── ASSETS ─── */
-const LOGO = "/manus-storage/enosh-logo_8bf97c09.png";
-const HERO_BG = "/manus-storage/enosh-hero-bg_7aaa8646.png";
+const LOGO = "/enosh-logo.png";
+const HERO_BG = "/enosh-hero-bg.jpg";
 
 function useScrollReveal(threshold = 0.15) {
   const ref = useRef(null);

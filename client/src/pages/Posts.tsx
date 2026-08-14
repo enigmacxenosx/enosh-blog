@@ -30,7 +30,7 @@ import {
 } from "@/components/ui/select";
 
 /* ─── ASSETS ─── */
-const LOGO = "/manus-storage/enosh-logo_8bf97c09.png";
+const LOGO = "/enosh-logo.png";
 
 /* ─── Scroll Reveal Hook ─── */
 function useScrollReveal(threshold = 0.15) {
@@ -181,7 +181,7 @@ function PostEditor({ onSuccess }: { onSuccess: () => void }) {
               <Input
                 value={form.coverUrl}
                 onChange={set("coverUrl")}
-                placeholder="/manus-storage/..."
+                placeholder="/enosh-1.jpg"
                 className="bg-[#0f0f0f] border-white/10 text-[#f0ece4] placeholder:text-[#555]"
               />
             </div>

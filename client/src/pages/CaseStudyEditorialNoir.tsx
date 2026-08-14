@@ -9,7 +9,7 @@ import { motion, useInView } from "framer-motion";
 import { ArrowLeft, Droplets, LayoutGrid, Sparkles, Type } from "lucide-react";
 
 /* ─── ASSETS ─── */
-const LOGO = "/manus-storage/enosh-logo_8bf97c09.png";
+const LOGO = "/enosh-logo.png";
 
 /* ─── Scroll Reveal Hook ─── */
 function useScrollReveal(threshold = 0.15) {
