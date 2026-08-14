@@ -11,15 +11,15 @@ import { Instagram, MessageCircle, Facebook, ArrowDown, ExternalLink, MapPin, Br
 
 /* ─── ASSETS ─── */
 const PHOTOS = {
-  hero: "/enosh-1.jpg",       // street style shot
-  shades: "/enosh-2.jpg",     // sunglasses shot
-  portrait: "/enosh-3.jpg",   // glasses portrait
-  hustle: "/enosh-4.png",     // money/grind
+  hero: "/manus-storage/enosh-1_fb269776.jpg",       // street style shot
+  shades: "/manus-storage/enosh-2_c1b58fd5.jpg",     // sunglasses shot
+  portrait: "/manus-storage/enosh-3_fdcc35c7.jpg",   // glasses portrait
+  hustle: "/manus-storage/enosh-4_5b9e87e6.jpg",     // money/grind
 };
 
-const LOGO = "/enosh-logo.png";
-const HERO_BG = "/enosh-hero-bg.png";
-const ABOUT_BG = "/enosh-about-bg.png";
+const LOGO = "/manus-storage/enosh-logo_8bf97c09.png";
+const HERO_BG = "/manus-storage/enosh-hero-bg_7aaa8646.png";
+const ABOUT_BG = "/manus-storage/enosh-about-bg_5d68951e.png";
 
 function useScrollReveal(threshold = 0.15) {
   const ref = useRef(null);

@@ -1,39 +1,36 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  const { key } = req.query;
-
-  if (!key || typeof key !== 'string') {
-    return res.status(400).send("Missing or invalid storage key");
+  const key = (req.query.key as string) || req.url?.replace(/^\/api\/storage-proxy\?key=/, "");
+  if (!key) {
+    res.status(400).send("Missing storage key");
+    return;
   }
 
-  const forgeBaseUrl = (process.env.BUILT_IN_FORGE_API_URL || "").replace(/\/+$/, "");
+  const forgeBaseUrl = process.env.BUILT_IN_FORGE_API_URL?.replace(/\/+$/, "");
   const forgeKey = process.env.BUILT_IN_FORGE_API_KEY;
 
   if (!forgeBaseUrl || !forgeKey) {
-    return res.status(500).send("Storage proxy not configured on Vercel");
+    res.status(500).send("Storage proxy not configured");
+    return;
   }
 
   try {
-    const forgeUrl = new URL("v1/storage/presign/get", forgeBaseUrl + "/");
-    forgeUrl.searchParams.set("path", key);
+    const url = new URL("v1/storage/presign/get", forgeBaseUrl + "/");
+    url.searchParams.set("path", key);
 
-    const forgeResp = await fetch(forgeUrl, {
+    const resp = await fetch(url, {
       headers: { Authorization: `Bearer ${forgeKey}` },
     });
 
-    if (!forgeResp.ok) {
-      return res.status(502).send("Storage backend error");
+    if (!resp.ok) {
+      res.status(resp.status).send("Storage fetch failed");
+      return;
     }
 
-    const { url } = (await forgeResp.json()) as { url: string };
-    if (!url) {
-      return res.status(502).send("Empty signed URL");
-    }
-
-    res.redirect(307, url);
-  } catch (error) {
-    console.error("Storage proxy error:", error);
-    res.status(502).send("Storage proxy error");
+    const { url: signedUrl } = await resp.json();
+    res.redirect(307, signedUrl);
+  } catch {
+    res.status(500).send("Storage proxy error");
   }
 }
