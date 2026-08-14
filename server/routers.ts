@@ -6,8 +6,15 @@ import { publicProcedure, router } from "./_core/trpc";
 import { protectedProcedure } from "./_core/trpc";
 import {
   deleteGalleryPhoto,
+  deletePost,
   getAllGalleryPhotos,
+  getPostBySlug,
   insertGalleryPhoto,
+  insertPost,
+  listAllPosts,
+  listPublishedPosts,
+  slugExists,
+  updatePost,
 } from "./db";
 import { storagePut } from "./storage";
 
@@ -96,6 +103,94 @@ export const appRouter = router({
       .input(z.object({ id: z.number() }))
       .mutation(async ({ input }) => {
         await deleteGalleryPhoto(input.id);
+        return { success: true };
+      }),
+  }),
+
+  posts: router({
+    /** List published posts (public, client-safe fields). */
+    list: publicProcedure.query(async () => {
+      const posts = await listPublishedPosts();
+      return posts.map(p => ({
+        id: p.id,
+        slug: p.slug,
+        title: p.title,
+        excerpt: p.excerpt,
+        tags: p.tags,
+        coverUrl: p.coverUrl,
+        publishedAt: p.publishedAt,
+        createdAt: p.createdAt,
+      }));
+    }),
+
+    /** Get a single published post by slug (public). */
+    bySlug: publicProcedure
+      .input(z.object({ slug: z.string().min(1).max(256) }))
+      .query(async ({ input }) => {
+        const post = await getPostBySlug(input.slug);
+        if (!post || post.status !== "published") return null;
+        return post;
+      }),
+
+    /** List ALL posts including drafts (authenticated users only). */
+    adminList: protectedProcedure.query(async () => {
+      return listAllPosts();
+    }),
+
+    /** Create a new post (authenticated users only). */
+    create: protectedProcedure
+      .input(
+        z.object({
+          slug: z.string().min(1).max(256).regex(/^[a-z0-9-]+$/),
+          title: z.string().min(1).max(512),
+          excerpt: z.string().max(1024).default(""),
+          body: z.string().min(1),
+          tags: z.string().max(512).default(""),
+          coverUrl: z.string().max(512).default(""),
+          status: z.enum(["draft", "published"]).default("draft"),
+          sortOrder: z.number().int().default(0),
+        }),
+      )
+      .mutation(async ({ input }) => {
+        if (await slugExists(input.slug)) {
+          throw new Error(`Slug "${input.slug}" already exists`);
+        }
+        await insertPost({
+          ...input,
+          publishedAt: input.status === "published" ? new Date() : null,
+        });
+        return { success: true };
+      }),
+
+    /** Update an existing post (authenticated users only). */
+    update: protectedProcedure
+      .input(
+        z.object({
+          id: z.number(),
+          slug: z.string().min(1).max(256).regex(/^[a-z0-9-]+$/).optional(),
+          title: z.string().min(1).max(512).optional(),
+          excerpt: z.string().max(1024).optional(),
+          body: z.string().min(1).optional(),
+          tags: z.string().max(512).optional(),
+          coverUrl: z.string().max(512).optional(),
+          status: z.enum(["draft", "published"]).optional(),
+          sortOrder: z.number().int().optional(),
+        }),
+      )
+      .mutation(async ({ input }) => {
+        const { id, slug, ...rest } = input;
+        if (slug && (await slugExists(slug, id))) {
+          throw new Error(`Slug "${slug}" already exists`);
+        }
+        await updatePost(id, rest);
+        return { success: true };
+      }),
+
+    /** Delete a post (authenticated users only). */
+    remove: protectedProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await deletePost(input.id);
         return { success: true };
       }),
   }),

@@ -46,3 +46,31 @@ export const galleryPhotos = mysqlTable("galleryPhotos", {
 
 export type GalleryPhoto = typeof galleryPhotos.$inferSelect;
 export type InsertGalleryPhoto = typeof galleryPhotos.$inferInsert;
+
+/**
+ * Blog posts table — Markdown-powered posts with tags, excerpts, cover images,
+ * and draft/published status for the post engine.
+ */
+export const blogPosts = mysqlTable("blogPosts", {
+  id: int("id").autoincrement().primaryKey(),
+  /** URL-safe slug, e.g. "editorial-noir-design-system" */
+  slug: varchar("slug", { length: 256 }).notNull().unique(),
+  title: varchar("title", { length: 512 }).notNull(),
+  /** Optional short excerpt shown on list cards; derived if empty */
+  excerpt: varchar("excerpt", { length: 1024 }).default(""),
+  /** Full Markdown body */
+  body: text("body").notNull(),
+  /** Comma-separated tags, e.g. "design, case-study" */
+  tags: varchar("tags", { length: 512 }).default(""),
+  /** Optional cover image URL */
+  coverUrl: varchar("coverUrl", { length: 512 }).default(""),
+  status: mysqlEnum("status", ["draft", "published"]).default("draft").notNull(),
+  publishedAt: timestamp("publishedAt"),
+  /** Lower numbers appear first on the list */
+  sortOrder: int("sortOrder").default(0),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BlogPost = typeof blogPosts.$inferSelect;
+export type InsertBlogPost = typeof blogPosts.$inferInsert;

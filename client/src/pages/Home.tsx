@@ -60,6 +60,9 @@ function NavBar() {
           <Link href="/enosx" className="text-[#a09a90] hover:text-[#c9a96e] transition-colors duration-300 text-[11px] tracking-[0.25em] uppercase" style={{ fontFamily: "var(--font-mono)" }}>
             Enosx
           </Link>
+          <Link href="/posts" className="text-[#a09a90] hover:text-[#c9a96e] transition-colors duration-300 text-[11px] tracking-[0.25em] uppercase" style={{ fontFamily: "var(--font-mono)" }}>
+            Chapters
+          </Link>
           <a href="#about" className="text-[#a09a90] hover:text-[#c9a96e] transition-colors duration-300 text-[11px] tracking-[0.25em] uppercase" style={{ fontFamily: "var(--font-mono)" }}>
             About
           </a>

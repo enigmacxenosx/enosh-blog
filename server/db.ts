@@ -1,6 +1,6 @@
-import { desc, eq } from "drizzle-orm";
+import { and, asc, desc, eq, lt } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertGalleryPhoto, InsertUser, galleryPhotos, users } from "../drizzle/schema";
+import { InsertBlogPost, InsertGalleryPhoto, InsertUser, blogPosts, galleryPhotos, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -112,4 +112,70 @@ export async function deleteGalleryPhoto(id: number) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
   await db.delete(galleryPhotos).where(eq(galleryPhotos.id, id));
+}
+
+/* ─── Blog Posts ─── */
+
+const now = () => new Date();
+
+export async function listPublishedPosts() {
+  const db = await getDb();
+  if (!db) return [];
+  const result = await db
+    .select()
+    .from(blogPosts)
+    .where(and(eq(blogPosts.status, "published"), lt(blogPosts.publishedAt, now())))
+    .orderBy(asc(blogPosts.sortOrder), desc(blogPosts.publishedAt));
+  return result;
+}
+
+export async function getPostBySlug(slug: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db
+    .select()
+    .from(blogPosts)
+    .where(eq(blogPosts.slug, slug))
+    .limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function listAllPosts() {
+  const db = await getDb();
+  if (!db) return [];
+  const result = await db
+    .select()
+    .from(blogPosts)
+    .orderBy(asc(blogPosts.sortOrder), desc(blogPosts.createdAt));
+  return result;
+}
+
+export async function insertPost(post: InsertBlogPost) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.insert(blogPosts).values(post);
+}
+
+export async function updatePost(id: number, fields: Partial<InsertBlogPost>) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.update(blogPosts).set(fields).where(eq(blogPosts.id, id));
+}
+
+export async function deletePost(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.delete(blogPosts).where(eq(blogPosts.id, id));
+}
+
+export async function slugExists(slug: string, excludeId?: number) {
+  const db = await getDb();
+  if (!db) return false;
+  const conditions = excludeId ? [eq(blogPosts.slug, slug), eq(blogPosts.id, excludeId)] : [eq(blogPosts.slug, slug)];
+  const result = await db
+    .select({ id: blogPosts.id })
+    .from(blogPosts)
+    .where(and(...conditions))
+    .limit(1);
+  return result.length > 0;
 }

@@ -225,7 +225,12 @@ function ProcessSection() {
             </p>
             <div className="flex items-center gap-2 pt-2">
               <Globe className="w-3.5 h-3.5 text-[#c9a96e]/60" />
-              <p className="text-[#a09a90] text-xs" style={{ fontFamily: "var(--font-mono)" }}>Case study live at /blog</p>
+              <Link
+                href="/enosx/case-studies/editorial-noir"
+                className="text-[#c9a96e] hover:text-[#e0c890] transition-colors text-xs" style={{ fontFamily: "var(--font-mono)" }}
+              >
+                Read the full case study →
+              </Link>
             </div>
           </motion.div>
           <motion.div

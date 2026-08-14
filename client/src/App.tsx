@@ -7,6 +7,9 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Gallery from "./pages/Gallery";
 import Enosx from "./pages/Enosx";
+import Posts from "./pages/Posts";
+import PostDetail from "./pages/PostDetail";
+import CaseStudyEditorialNoir from "./pages/CaseStudyEditorialNoir";
 
 function Router() {
   return (
@@ -14,6 +17,9 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path={"/gallery"} component={Gallery} />
       <Route path={"/enosx"} component={Enosx} />
+      <Route path={"/enosx/case-studies/editorial-noir"} component={CaseStudyEditorialNoir} />
+      <Route path={"/posts/:slug"} component={PostDetail} />
+      <Route path={"/posts"} component={Posts} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
