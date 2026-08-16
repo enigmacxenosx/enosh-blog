@@ -519,7 +519,10 @@ function Footer() {
           <p className="text-[#a09a90] text-[10px] tracking-[0.2em]" style={{ fontFamily: "var(--font-mono)" }}>
             © 2026 ENOSH. ALL RIGHTS RESERVED.
           </p>
-          <div className="flex gap-5">
+          <div className="flex items-center gap-5">
+            <a href="https://enosxai.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[#a09a90] hover:text-[#c9a96e] transition-colors duration-300 text-[10px] tracking-[0.2em]" style={{ fontFamily: "var(--font-mono)" }}>ENOSX AI</a>
+            <a href="https://enosxtech-hub.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[#a09a90] hover:text-[#c9a96e] transition-colors duration-300 text-[10px] tracking-[0.2em]" style={{ fontFamily: "var(--font-mono)" }}>E-COMMERCE</a>
+            <a href="https://enosxtech.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[#a09a90] hover:text-[#c9a96e] transition-colors duration-300 text-[10px] tracking-[0.2em]" style={{ fontFamily: "var(--font-mono)" }}>ENOSX TECH</a>
             <a href="https://instagram.com/engima_cx" target="_blank" rel="noopener noreferrer" className="text-[#a09a90] hover:text-[#c9a96e] transition-colors duration-300">
               <Instagram className="w-4 h-4" />
             </a>
