@@ -29,7 +29,7 @@ import {
 } from "@/components/ui/select";
 
 /* ─── ASSETS ─── */
-const LOGO = "/enosh-logo.png";
+const LOGO = "/enosh-logo.webp";
 
 /* ─── Scroll Reveal Hook ─── */
 function useScrollReveal(threshold = 0.15) {

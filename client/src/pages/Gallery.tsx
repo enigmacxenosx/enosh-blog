@@ -36,8 +36,8 @@ const PHOTOS = {
   hero: "/enosh-1.jpg",
   shades: "/enosh-2.jpg",
   portrait: "/enosh-3.jpg",
-  hustle: "/enosh-4.png",
-  logo: "/enosh-logo.png",
+  hustle: "/enosh-4.jpg",
+  logo: "/enosh-logo.webp",
 };
 
 /* ─── Base Gallery Photos (from home page) ─── */

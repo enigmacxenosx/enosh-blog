@@ -29,7 +29,7 @@ import {
 } from "lucide-react";
 
 /* ─── ASSETS ─── */
-const LOGO = "/enosh-logo.png";
+const LOGO = "/enosh-logo.webp";
 const HERO_BG = "/enosh-hero-bg.jpg";
 
 function useScrollReveal(threshold = 0.15) {
