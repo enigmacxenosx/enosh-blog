@@ -307,6 +307,10 @@ function GallerySection() {
     { src: PHOTOS.shades, alt: "Enosh", caption: "The Vibe", sub: "Chapter 002 — Confidence" },
     { src: PHOTOS.portrait, alt: "Enosh", caption: "Reflections", sub: "Chapter 003 — Mirror Work" },
     { src: PHOTOS.hustle, alt: "Hustle", caption: "Grind Mode", sub: "Chapter 004 — The Come Up" },
+    { src: "/gallery/chapter-005-shadow.jpg", alt: "Shadow Play", caption: "Shadow Play", sub: "Chapter 005 — Low Light" },
+    { src: "/gallery/chapter-006-blue-hour.jpg", alt: "Blue Hour", caption: "Blue Hour", sub: "Chapter 006 — Electric Blue" },
+    { src: "/gallery/chapter-007-monochrome.jpg", alt: "Monochrome", caption: "Monochrome", sub: "Chapter 007 — No Filter" },
+    { src: "/gallery/chapter-008-window-light.jpg", alt: "Window Light", caption: "Window Light", sub: "Chapter 008 — In Focus" },
   ];
 
   return (
@@ -322,7 +326,7 @@ function GallerySection() {
           </h2>
           <div className="flex items-center gap-3 pt-2">
             <div className="h-px w-10 bg-[#c9a96e]" />
-            <p className="text-[#a09a90] text-xs" style={{ fontFamily: "var(--font-mono)" }}>4 Frames</p>
+            <p className="text-[#a09a90] text-xs" style={{ fontFamily: "var(--font-mono)" }}>{photos.length} Frames</p>
           </div>
         </div>
 
@@ -414,6 +418,30 @@ function GallerySection() {
             <div className="absolute top-5 left-5 w-6 h-6 border-t border-l border-[#c9a96e]/0 group-hover:border-[#c9a96e]/60 transition-all duration-500" />
             <div className="absolute top-5 right-5 w-6 h-6 border-t border-r border-[#c9a96e]/0 group-hover:border-[#c9a96e]/60 transition-all duration-500" />
           </motion.div>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 mt-4 md:mt-5">
+          {photos.slice(4).map((photo, i) => (
+            <motion.div
+              key={photo.src}
+              className="relative group overflow-hidden"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.7 + i * 0.1, ease: [0.23, 1, 0.32, 1] }}
+            >
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                className="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                style={{ filter: "brightness(0.78) contrast(1.06) saturate(0.9)" }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/90 via-transparent to-transparent opacity-70 group-hover:opacity-85 transition-opacity duration-500" />
+              <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5">
+                <p className="text-[#c9a96e] text-[8px] tracking-[0.25em] uppercase mb-1" style={{ fontFamily: "var(--font-mono)" }}>{photo.sub}</p>
+                <p className="text-[#f0ece4] text-base md:text-lg font-medium" style={{ fontFamily: "var(--font-display)" }}>{photo.caption}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
