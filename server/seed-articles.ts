@@ -3,8 +3,8 @@
  * Run: npx tsx server/seed-articles.ts
  * These articles are reusable — skip rows whose slug already exists.
  */
-import { db } from "./db"
-import { blogPosts, slugExists } from "./db"
+import { getDb, slugExists } from "./db"
+import { blogPosts } from "../drizzle/schema"
 
 const now = new Date()
 
@@ -140,6 +140,11 @@ Nairobi will not stop moving. Your job is to decide, frame by frame, what deserv
 ] as const
 
 async function main() {
+  const db = await getDb()
+  if (!db) {
+    throw new Error("Database not available. Set DATABASE_URL before running the seed script.")
+  }
+
   let added = 0
   for (const a of ARTICLES) {
     const exists = await slugExists(a.slug)
