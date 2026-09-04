@@ -1,69 +1,53 @@
-# Enosh Blog — Editorial Noir
+# Enosh Blog
 
-![Enosx Technologies](https://img.shields.io/badge/Enosx-Technologies-0ea5e9) ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6) ![Build](https://img.shields.io/badge/build-passing-22c55e)
+Enosh Blog is a personal publishing platform for **Enosh Yeswa**, designed in an Editorial Noir style: dark, typographic, and magazine-inspired. It is part of the [Enosx Technologies](https://github.com/enigmacxenosx) portfolio.
 
-A personal blog for **Enosh Yeswa** with an **Editorial Noir** design language — dark, typographic, and magazine-inspired. Part of the [Enosx Technologies](https://github.com/enigmacxenosx) portfolio, alongside ENOSX AI, the e-commerce aggregator, and the official tech site.
-
-> **Contact:** WhatsApp [+254 798 303 978](https://wa.me/254798303978) · Instagram [@enosx_tech](https://instagram.com/enosx_tech) · [@engima_cx](https://instagram.com/engima_cx)
-
-## Live Site
-
-| Item | Details |
-| :--- | :--- |
-| Stack | React 19, Vite 7, TypeScript, Tailwind CSS |
-| Design | Editorial Noir (custom design system in `client/src/_core`) |
-| Hosting | Vercel |
+[![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6)](https://www.typescriptlang.org/) [![Live project](https://img.shields.io/badge/design-Editorial%20Noir-111827)](https://github.com/enigmacxenosx/enosh-blog)
 
 ## Features
 
-- **Editorial Noir design system** — a bespoke dark design system with serif-forward typography and restrained motion.
-- **Post listing & detail views** — magazine-style article layouts.
-- **Component showcase** — a living style guide of the design system components.
-- **Case study layouts** — long-form editorial templates for deep-dive content.
-- **Server-rendered blog API** — backend in `server/` with Drizzle ORM.
+- Editorial Noir design system with serif-forward typography and restrained motion.
+- Magazine-style post listing and detail pages.
+- Reusable component showcase and case-study layouts.
+- Server-rendered blog API with Drizzle ORM.
 
-## Getting Started
+## Technology
 
-> **Note:** this project pins `legacy-peer-deps=true` in `.npmrc` to reconcile the `@builder.io/vite-plugin-jsx-loc` peer range with Vite 7.
+React 19, Vite 7, TypeScript, Tailwind CSS, Express, and Drizzle ORM. The application is designed for Vercel deployment.
+
+## Getting started
+
+The repository pins `legacy-peer-deps=true` in `.npmrc` for compatibility with the Vite 7 plugin set.
 
 ```bash
 git clone https://github.com/enigmacxenosx/enosh-blog.git
 cd enosh-blog
 npm install
-npm run dev        # local development
-npm run build      # production build
+npm run dev
+npm run build
 ```
 
-## Project Structure
+## Project structure
 
-```text
-client/
-├── src/
-│   ├── _core/         # Editorial Noir design system foundation
-│   ├── components/    # Design system and layout components
-│   ├── pages/         # Home, Posts, PostDetail, Gallery, CaseStudy…
-│   ├── hooks/         # Custom React hooks
-│   └── lib/           # Utilities
-server/                # SSR / API backend
-shared/                # Shared types and constants
-api/                   # API endpoints
-drizzle/               # Database migrations
-```
+| Path | Purpose |
+|---|---|
+| `client/src/_core/` | Editorial Noir design foundations |
+| `client/src/components/` | Design-system and layout components |
+| `client/src/pages/` | Home, posts, gallery, and case-study pages |
+| `server/` | Server and API backend |
+| `shared/` | Shared types and constants |
+| `api/` | API endpoints |
+| `drizzle/` | Database migrations |
 
-## Writing a New Post
+## Writing a post
 
-1. Add the post data to the shared posts store (`shared/`).
-2. Use the `PostDetail` page template for consistent editorial layout.
-3. Run `npm run build` to verify the production build stays clean.
+Add the post data to the shared posts store, use the `PostDetail` template for the page layout, and run `npm run build` before publishing.
 
-## Enosx Portfolio
+## Portfolio
 
-| Product | URL |
-| :--- | :--- |
-| ENOSX AI | https://enosxai.vercel.app |
-| E-commerce Hub | https://enosxtech-hub.vercel.app |
-| Tech Site | https://enosxtech.vercel.app |
-| Exlover Coaching | https://exlover.vercel.app |
+- [ENOSX AI](https://enosxai.vercel.app)
+- [E-commerce Hub](https://enosxtech-hub.vercel.app)
+- [Official website](https://enosxtech.vercel.app)
 
 ## License
 
