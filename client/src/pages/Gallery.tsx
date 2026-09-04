@@ -46,6 +46,22 @@ const BASE_PHOTOS = [
   { src: PHOTOS.shades, caption: "The Vibe", sub: "Chapter 002 — Confidence" },
   { src: PHOTOS.portrait, caption: "Reflections", sub: "Chapter 003 — Mirror Work" },
   { src: PHOTOS.hustle, caption: "Grind Mode", sub: "Chapter 004 — The Come Up" },
+  { src: "/gallery/chapter-005-shadow.jpg", caption: "Shadow Play", sub: "Chapter 005 — Low Light" },
+  { src: "/gallery/chapter-006-blue-hour.jpg", caption: "Blue Hour", sub: "Chapter 006 — Electric Blue" },
+  { src: "/gallery/chapter-007-monochrome.jpg", caption: "Monochrome", sub: "Chapter 007 — No Filter" },
+  { src: "/gallery/chapter-008-window-light.jpg", caption: "Window Light", sub: "Chapter 008 — In Focus" },
+  { src: "/gallery/chapter-009-close-up.jpg", caption: "Close Up", sub: "Chapter 009 — Presence" },
+  { src: "/gallery/chapter-010-motion.jpg", caption: "In Motion", sub: "Chapter 010 — Keep Moving" },
+  { src: "/gallery/chapter-011-electric-blue.jpg", caption: "Electric Blue", sub: "Chapter 011 — New Energy" },
+  { src: "/gallery/chapter-012-violet.jpg", caption: "Violet Haze", sub: "Chapter 012 — After Hours" },
+  { src: "/gallery/chapter-013-lamlok.jpg", caption: "Lamlok", sub: "Chapter 013 — Street Uniform" },
+  { src: "/gallery/chapter-014-street-collage.png", caption: "Street Collage", sub: "Chapter 014 — The Collective" },
+  { src: "/gallery/chapter-015-red-wall.png", caption: "Red Wall", sub: "Chapter 015 — Contrast" },
+  { src: "/gallery/chapter-016-covered-face.png", caption: "Covered Face", sub: "Chapter 016 — Anonymous" },
+  { src: "/gallery/chapter-017-grid-study.png", caption: "Grid Study", sub: "Chapter 017 — Fragments" },
+  { src: "/gallery/chapter-018-nine-frames.png", caption: "Nine Frames", sub: "Chapter 018 — Many Sides" },
+  { src: "/gallery/chapter-019-reflections.png", caption: "Reflections", sub: "Chapter 019 — Looking Back" },
+  { src: "/gallery/chapter-020-profile.png", caption: "Profile", sub: "Chapter 020 — Side View" },
 ];
 
 /* ─── Upload Dialog Component ─── */
