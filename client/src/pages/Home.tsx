@@ -8,7 +8,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { Instagram, MessageCircle, Facebook, ArrowDown, ExternalLink, MapPin, Briefcase } from "lucide-react";
+import { Instagram, MessageCircle, Facebook, ArrowDown, ArrowUpRight, BookOpen, Camera, ExternalLink, MapPin, Briefcase, Music2 } from "lucide-react";
 
 /* ─── ASSETS ─── */
 const PHOTOS = {
@@ -171,6 +171,112 @@ function HeroSection() {
           </motion.div>
         </div>
       </motion.div>
+    </section>
+  );
+}
+
+/* ─── EDITORIAL INDEX ─── */
+function EditorialIndexSection() {
+  const { ref, isInView } = useScrollReveal(0.12);
+
+  const dispatches = [
+    {
+      icon: Camera,
+      index: "01",
+      label: "LENS",
+      title: "Light before the city wakes.",
+      text: "Street frames, honest portraits, and the details that usually pass unnoticed.",
+    },
+    {
+      icon: Music2,
+      index: "02",
+      label: "SOUND",
+      title: "A slower rhythm for the work.",
+      text: "Bass, treble, and the soundtrack behind long nights and early starts.",
+    },
+    {
+      icon: BookOpen,
+      index: "03",
+      label: "NOTES",
+      title: "Ideas worth keeping close.",
+      text: "Short chapters on faith, ambition, design, and building from Nairobi.",
+    },
+  ];
+
+  return (
+    <section className="relative overflow-hidden border-y border-white/10 bg-[#11100f] py-10 md:py-14">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_20%,rgba(201,169,110,0.12),transparent_30%),linear-gradient(110deg,#11100f,#171512_55%,#0d0d0d)]" />
+      <div ref={ref} className="relative z-10 mx-auto max-w-[1400px] px-6 md:px-12">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+          className="flex flex-col gap-4 border-b border-white/10 pb-5 md:flex-row md:items-center md:justify-between"
+        >
+          <div className="flex items-center gap-3">
+            <span className="h-2 w-2 rounded-full bg-[#c9a96e] shadow-[0_0_0_4px_rgba(201,169,110,0.12)]" />
+            <p className="text-[10px] uppercase tracking-[0.35em] text-[#c9a96e]" style={{ fontFamily: "var(--font-mono)" }}>
+              Field notes / Issue 01
+            </p>
+          </div>
+          <div className="flex items-center gap-5 text-[10px] uppercase tracking-[0.25em] text-[#a09a90]" style={{ fontFamily: "var(--font-mono)" }}>
+            <span>Nairobi, KE</span>
+            <span className="h-3 w-px bg-white/15" />
+            <span>Always in progress</span>
+          </div>
+        </motion.div>
+
+        <div className="mt-8 grid grid-cols-1 gap-5 lg:grid-cols-12 lg:gap-0">
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
+            className="border border-[#c9a96e]/25 bg-[#0b0b0b]/55 p-6 md:p-8 lg:col-span-5 lg:border-r-0"
+          >
+            <p className="mb-5 text-[10px] uppercase tracking-[0.35em] text-[#c9a96e]/70" style={{ fontFamily: "var(--font-mono)" }}>
+              The current edition
+            </p>
+            <h2 className="max-w-md text-3xl font-medium leading-tight text-[#f0ece4] md:text-4xl" style={{ fontFamily: "var(--font-display)" }}>
+              A living archive of motion, mood, and making.
+            </h2>
+            <p className="mt-5 max-w-md text-sm leading-relaxed text-[#a09a90]" style={{ fontFamily: "var(--font-body)" }}>
+              Four pillars keep the pages moving: photography, music, faith, and the daily discipline of building something real.
+            </p>
+            <Link
+              href="/posts"
+              className="mt-7 inline-flex items-center gap-2 border-b border-[#c9a96e]/50 pb-1 text-[10px] uppercase tracking-[0.3em] text-[#e0c890] transition-colors hover:border-[#e0c890] hover:text-[#f0ece4]"
+              style={{ fontFamily: "var(--font-mono)" }}
+            >
+              Read the chapters <ArrowUpRight className="h-3.5 w-3.5" />
+            </Link>
+          </motion.div>
+
+          <div className="grid grid-cols-1 border border-white/10 bg-[#0d0d0d]/60 sm:grid-cols-3 lg:col-span-7">
+            {dispatches.map((item, index) => (
+              <motion.div
+                key={item.index}
+                initial={{ opacity: 0, y: 18 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.18 + index * 0.08, ease: [0.23, 1, 0.32, 1] }}
+                className="group border-b border-white/10 p-6 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0 md:p-7"
+              >
+                <div className="flex items-center justify-between">
+                  <item.icon className="h-4 w-4 text-[#c9a96e]" aria-hidden="true" />
+                  <span className="text-[10px] tracking-[0.25em] text-[#a09a90]" style={{ fontFamily: "var(--font-mono)" }}>
+                    {item.index} / {item.label}
+                  </span>
+                </div>
+                <h3 className="mt-12 text-xl font-medium leading-tight text-[#f0ece4] transition-colors group-hover:text-[#e0c890]" style={{ fontFamily: "var(--font-display)" }}>
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-xs leading-relaxed text-[#8f8981]" style={{ fontFamily: "var(--font-body)" }}>
+                  {item.text}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
@@ -573,6 +679,7 @@ export default function Home() {
     <div className="min-h-screen bg-[#0a0a0a]" style={{ fontFamily: "var(--font-body)" }}>
       <NavBar />
       <HeroSection />
+      <EditorialIndexSection />
       <AboutSection />
       <QuoteSection />
       <GallerySection />
