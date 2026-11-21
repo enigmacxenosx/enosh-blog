@@ -199,10 +199,10 @@ export default function PostDetail() {
   };
 
   return (
-    <div className="lumora-page lm-editorial-page min-h-screen bg-[#0a0a0a]" style={{ fontFamily: "var(--font-body)" }}>
+    <div className="lumora-page lm-editorial-page lm-post-detail-page min-h-screen bg-[#0a0a0a]" style={{ fontFamily: "var(--font-body)" }}>
       {/* ─── Nav Bar ─── */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-white/5">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between py-4">
+      <nav className="lm-post-nav fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-white/5">
+        <div className="lm-post-nav-inner max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between py-4">
           <Link href="/" className="flex items-center gap-3">
             <img src={LOGO} alt="E" className="w-6 h-6 object-contain" />
             <span className="text-[#f0ece4] text-lg font-medium" style={{ fontFamily: "var(--font-display)" }}>
@@ -241,8 +241,8 @@ export default function PostDetail() {
       ) : (
         <>
           {/* Article header */}
-          <section className="pt-28 md:pt-36 bg-[#0a0a0a]">
-            <div ref={ref} className="max-w-[860px] mx-auto px-6 md:px-12">
+          <section className="lm-post-header pt-28 md:pt-36 bg-[#0a0a0a]">
+            <div ref={ref} className="lm-post-header-inner max-w-[860px] mx-auto px-6 md:px-12">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -258,7 +258,7 @@ export default function PostDetail() {
                     ))}
                   </div>
                 )}
-                <h1 className="text-[#f0ece4] text-3xl md:text-[3.2rem] font-bold leading-[1.08] mb-5" style={{ fontFamily: "var(--font-display)" }}>
+                <h1 className="lm-post-title text-[#f0ece4] text-3xl md:text-[3.2rem] font-bold leading-[1.08] mb-5" style={{ fontFamily: "var(--font-display)" }}>
                   {post.title}
                 </h1>
                 <div className="flex items-center justify-between flex-wrap gap-4 mb-8">
@@ -290,11 +290,11 @@ export default function PostDetail() {
                   )}
                 </div>
                 {post.coverUrl && (
-                  <div className="overflow-hidden rounded-lg mb-10">
+                  <div className="lm-post-detail-cover overflow-hidden rounded-lg mb-10">
                     <img
                       src={post.coverUrl}
                       alt={post.title}
-                      className="w-full max-h-[420px] object-cover"
+                      className="lm-post-detail-cover-image w-full max-h-[420px] object-cover"
                       style={{ filter: "brightness(0.9) contrast(1.02) saturate(0.95)" }}
                     />
                   </div>
@@ -304,13 +304,13 @@ export default function PostDetail() {
           </section>
 
           {/* Article body */}
-          <section className="pb-28 md:pb-36 bg-[#0a0a0a]">
-            <article className="max-w-[860px] mx-auto px-6 md:px-12">
+          <section className="lm-post-body-section pb-28 md:pb-36 bg-[#0a0a0a]">
+            <article className="lm-post-body max-w-[860px] mx-auto px-6 md:px-12">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="prose-custom"
+                className="lm-post-copy prose-custom"
               >
                 <ReactMarkdown
                   components={{

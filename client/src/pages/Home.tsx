@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type PointerEvent } from "react";
 import { Link } from "wouter";
 import { ArrowDownRight, ArrowRight, ArrowUpRight, Camera, Menu, Music2, X } from "lucide-react";
 
@@ -7,6 +7,12 @@ const photos = [
   { src: "/enosh-2.jpg", alt: "A quiet moment in the sun", title: "The Vibe", label: "02 / Perspective" },
   { src: "/enosh-3.jpg", alt: "Portrait of Enosh", title: "In Focus", label: "03 / Portraits" },
 ];
+
+function trackPointerGlow(event: PointerEvent<HTMLElement>) {
+  const bounds = event.currentTarget.getBoundingClientRect();
+  event.currentTarget.style.setProperty("--pointer-x", `${event.clientX - bounds.left}px`);
+  event.currentTarget.style.setProperty("--pointer-y", `${event.clientY - bounds.top}px`);
+}
 
 function Brand() {
   return <Link href="/" className="lm-brand"><span className="lm-brand-mark" aria-hidden="true">✳</span><span>Enosh</span></Link>;
@@ -94,7 +100,7 @@ export default function Home() {
               <div className="lm-hero-note"><span className="lm-note-dot" /> Building the future from Kenya.</div>
             </div>
             <div className="lm-hero-visual">
-              <div className="lm-image-frame"><img src="/enosh-1.jpg" alt="Enosh, framed in an everyday moment" fetchPriority="high" /><span className="lm-image-index">NAIROBI · 2026</span></div>
+              <div className="lm-image-frame" onPointerMove={trackPointerGlow}><img src="/enosh-1.jpg" alt="Enosh, framed in an everyday moment" fetchPriority="high" /><span className="lm-image-index">NAIROBI · 2026</span></div>
               <div className="lm-image-caption"><span>PERSONAL ARCHIVE / VOL. 01</span><span>Stories as they happen.</span></div>
               <span className="lm-hero-watermark" aria-hidden="true">ENOSH</span>
             </div>
@@ -113,9 +119,9 @@ export default function Home() {
           <div className="lm-wrap">
             <div className="lm-section-top" data-reveal><div><span className="lm-kicker">Field notes / Issue 01</span><h2 className="lm-section-heading">A few things<br />I return to.</h2></div><Link href="/posts" className="lm-outline-link">All chapters <ArrowUpRight size={15} /></Link></div>
             <div className="lm-note-grid" data-reveal>
-              <Link href="/gallery" className="lm-note-card"><div className="lm-note-icon"><Camera size={19} /></div><span className="lm-card-number">01 / LENS</span><h3>Light before the city wakes.</h3><p>Street frames, honest portraits, and details that might have slipped by.</p><span className="lm-card-arrow"><ArrowUpRight size={17} /></span></Link>
-              <Link href="/posts" className="lm-note-card"><div className="lm-note-icon"><Music2 size={19} /></div><span className="lm-card-number">02 / SOUND</span><h3>A slower rhythm for the work.</h3><p>The soundtrack behind long nights, early starts, and everything in between.</p><span className="lm-card-arrow"><ArrowUpRight size={17} /></span></Link>
-              <Link href="/posts" className="lm-note-card"><div className="lm-note-icon"><span>✳</span></div><span className="lm-card-number">03 / NOTES</span><h3>Ideas worth keeping close.</h3><p>Thoughts on faith, ambition, design, and building from Nairobi.</p><span className="lm-card-arrow"><ArrowUpRight size={17} /></span></Link>
+              <Link href="/gallery" className="lm-note-card" onPointerMove={trackPointerGlow}><div className="lm-note-icon"><Camera size={19} /></div><span className="lm-card-number">01 / LENS</span><h3>Light before the city wakes.</h3><p>Street frames, honest portraits, and details that might have slipped by.</p><span className="lm-card-arrow"><ArrowUpRight size={17} /></span></Link>
+              <Link href="/posts" className="lm-note-card" onPointerMove={trackPointerGlow}><div className="lm-note-icon"><Music2 size={19} /></div><span className="lm-card-number">02 / SOUND</span><h3>A slower rhythm for the work.</h3><p>The soundtrack behind long nights, early starts, and everything in between.</p><span className="lm-card-arrow"><ArrowUpRight size={17} /></span></Link>
+              <Link href="/posts" className="lm-note-card" onPointerMove={trackPointerGlow}><div className="lm-note-icon"><span>✳</span></div><span className="lm-card-number">03 / NOTES</span><h3>Ideas worth keeping close.</h3><p>Thoughts on faith, ambition, design, and building from Nairobi.</p><span className="lm-card-arrow"><ArrowUpRight size={17} /></span></Link>
             </div>
           </div>
         </section>
@@ -124,10 +130,10 @@ export default function Home() {
           <div className="lm-wrap">
             <div className="lm-section-top" data-reveal><div><span className="lm-kicker">Built in public · From Kenya</span><h2 className="lm-section-heading">Products in<br />the works.</h2></div><a href="https://github.com/enigmacxenosx" target="_blank" rel="noreferrer" className="lm-outline-link">GitHub projects <ArrowUpRight size={15} /></a></div>
             <div className="lm-project-grid" data-reveal>
-              <a className="lm-project-card" href="https://enosxai.vercel.app" target="_blank" rel="noreferrer"><span className="lm-card-number">01 / AI</span><h3>ENOSX AI</h3><p>A multimodal AI assistant and product platform, built by Enosx Technologies.</p><span className="lm-project-link">Open product <ArrowUpRight size={15} /></span></a>
-              <a className="lm-project-card" href="https://enosxtech-hub.vercel.app" target="_blank" rel="noreferrer"><span className="lm-card-number">02 / COMMERCE</span><h3>Enosx Tech Store</h3><p>A Kenya-focused electronics discovery and e-commerce experience.</p><span className="lm-project-link">Explore the store <ArrowUpRight size={15} /></span></a>
-              <a className="lm-project-card" href="https://github.com/enigmacxenosx/Enosh-browser" target="_blank" rel="noreferrer"><span className="lm-card-number">03 / BROWSER</span><h3>Enosx Browser</h3><p>An offline-ready browser workspace with privacy controls and Enosx AI.</p><span className="lm-project-link">View on GitHub <ArrowUpRight size={15} /></span></a>
-              <a className="lm-project-card" href="https://github.com/enigmacxenosx/Exboot" target="_blank" rel="noreferrer"><span className="lm-card-number">04 / UTILITY</span><h3>Exboot</h3><p>A Windows utility for creating bootable and multi-boot USB media.</p><span className="lm-project-link">View on GitHub <ArrowUpRight size={15} /></span></a>
+              <a className="lm-project-card" href="https://enosxai.vercel.app" target="_blank" rel="noreferrer" onPointerMove={trackPointerGlow}><span className="lm-card-number">01 / AI</span><h3>ENOSX AI</h3><p>A multimodal AI assistant and product platform, built by Enosx Technologies.</p><span className="lm-project-link">Open product <ArrowUpRight size={15} /></span></a>
+              <a className="lm-project-card" href="https://enosxtech-hub.vercel.app" target="_blank" rel="noreferrer" onPointerMove={trackPointerGlow}><span className="lm-card-number">02 / COMMERCE</span><h3>Enosx Tech Store</h3><p>A Kenya-focused electronics discovery and e-commerce experience.</p><span className="lm-project-link">Explore the store <ArrowUpRight size={15} /></span></a>
+              <a className="lm-project-card" href="https://github.com/enigmacxenosx/Enosh-browser" target="_blank" rel="noreferrer" onPointerMove={trackPointerGlow}><span className="lm-card-number">03 / BROWSER</span><h3>Enosx Browser</h3><p>An offline-ready browser workspace with privacy controls and Enosx AI.</p><span className="lm-project-link">View on GitHub <ArrowUpRight size={15} /></span></a>
+              <a className="lm-project-card" href="https://github.com/enigmacxenosx/Exboot" target="_blank" rel="noreferrer" onPointerMove={trackPointerGlow}><span className="lm-card-number">04 / UTILITY</span><h3>Exboot</h3><p>A Windows utility for creating bootable and multi-boot USB media.</p><span className="lm-project-link">View on GitHub <ArrowUpRight size={15} /></span></a>
             </div>
           </div>
         </section>
@@ -135,7 +141,7 @@ export default function Home() {
         <section className="lm-section lm-gallery-section" id="gallery">
           <div className="lm-wrap">
             <div className="lm-section-top" data-reveal><div><span className="lm-kicker">The archive</span><h2 className="lm-section-heading">Seen along<br />the way.</h2></div><Link href="/gallery" className="lm-outline-link">Open the gallery <ArrowUpRight size={15} /></Link></div>
-            <div className="lm-photo-grid">{photos.map((photo, i) => <Link href="/gallery" className={`lm-photo-card lm-photo-${i + 1}`} key={photo.src}><img src={photo.src} alt={photo.alt} loading="lazy" /><div className="lm-photo-shade" /><div className="lm-photo-caption"><span>{photo.label}</span><strong>{photo.title}</strong></div></Link>)}</div>
+            <div className="lm-photo-grid">{photos.map((photo, i) => <Link href="/gallery" className={`lm-photo-card lm-photo-${i + 1}`} key={photo.src} onPointerMove={trackPointerGlow}><img src={photo.src} alt={photo.alt} loading="lazy" /><div className="lm-photo-shade" /><div className="lm-photo-caption"><span>{photo.label}</span><strong>{photo.title}</strong></div></Link>)}</div>
             <p className="lm-gallery-note">A frame is a way of paying attention.</p>
           </div>
         </section>

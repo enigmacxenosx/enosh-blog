@@ -247,10 +247,10 @@ export default function Posts() {
   };
 
   return (
-    <div className="lumora-page lm-editorial-page min-h-screen bg-[#0a0a0a]" style={{ fontFamily: "var(--font-body)" }}>
+    <div className="lumora-page lm-editorial-page lm-posts-page min-h-screen bg-[#0a0a0a]" style={{ fontFamily: "var(--font-body)" }}>
       {/* ─── Nav Bar ─── */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-white/5">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between py-4">
+      <nav className="lm-post-nav fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-white/5">
+        <div className="lm-post-nav-inner max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between py-4">
           <Link href="/" className="flex items-center gap-3">
             <img src={LOGO} alt="E" className="w-6 h-6 object-contain" />
             <span className="text-[#f0ece4] text-lg font-medium" style={{ fontFamily: "var(--font-display)" }}>
@@ -270,8 +270,8 @@ export default function Posts() {
       </nav>
 
       {/* ─── Header ─── */}
-      <section className="pt-28 pb-16 md:pt-36 md:pb-20 bg-[#0a0a0a]">
-        <div ref={ref} className="max-w-[1400px] mx-auto px-6 md:px-12">
+      <section className="lm-post-header pt-28 pb-16 md:pt-36 md:pb-20 bg-[#0a0a0a]">
+        <div ref={ref} className="lm-post-header-inner max-w-[1400px] mx-auto px-6 md:px-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -280,7 +280,7 @@ export default function Posts() {
             <p className="text-[#c9a96e] text-[11px] tracking-[0.4em] uppercase mb-6" style={{ fontFamily: "var(--font-mono)" }}>
               — The Chapters
             </p>
-            <h1 className="text-[#f0ece4] text-4xl md:text-[3.8rem] font-bold leading-[1.05]" style={{ fontFamily: "var(--font-display)" }}>
+            <h1 className="lm-post-title text-[#f0ece4] text-4xl md:text-[3.8rem] font-bold leading-[1.05]" style={{ fontFamily: "var(--font-display)" }}>
               Writing.
             </h1>
             <p className="text-[#a09a90] text-[15px] mt-4 max-w-lg">
@@ -297,7 +297,7 @@ export default function Posts() {
 
       {/* ─── Tag Filter ─── */}
       {allTags.length > 0 && (
-        <section className="pb-6 bg-[#0a0a0a]">
+        <section className="lm-post-filters pb-6 bg-[#0a0a0a]">
           <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex flex-wrap gap-3">
             <button
               onClick={() => setSelectedTag(null)}
@@ -329,7 +329,7 @@ export default function Posts() {
       )}
 
       {/* ─── Posts Grid ─── */}
-      <section className="pb-28 md:pb-36 bg-[#0a0a0a]">
+      <section className="lm-post-list-section pb-28 md:pb-36 bg-[#0a0a0a]">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           {isLoading ? (
             <div className="flex items-center justify-center py-20">
@@ -349,27 +349,27 @@ export default function Posts() {
               </p>
             </motion.div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5 border border-white/5">
+            <div className="lm-post-grid grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5 border border-white/5">
               {filtered.map((post, i) => (
                 <motion.div
                   key={post.slug}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: i * 0.08, ease: [0.23, 1, 0.32, 1] }}
-                  className="bg-[#0a0a0a] p-8 md:p-10 group"
+                  className="lm-post-card bg-[#0a0a0a] p-8 md:p-10 group"
                 >
                   <Link href={`/posts/${post.slug}`} className="block">
                     {post.coverUrl && (
-                      <div className="mb-6 overflow-hidden">
+                      <div className="lm-post-cover mb-6 overflow-hidden">
                         <img
                           src={post.coverUrl}
                           alt={post.title}
-                          className="w-full h-44 object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                          className="lm-post-cover-image w-full h-44 object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                           style={{ filter: "brightness(0.88) contrast(1.02) saturate(0.95)" }}
                         />
                       </div>
                     )}
-                    <div className="flex items-center gap-4 mb-4">
+                    <div className="lm-post-meta flex items-center gap-4 mb-4">
                       {post.tags && (
                         <span className="flex items-center gap-1.5 text-[#c9a96e] text-[9px] tracking-[0.3em] uppercase" style={{ fontFamily: "var(--font-mono)" }}>
                           <Tag className="w-3 h-3" />
@@ -383,10 +383,10 @@ export default function Posts() {
                         </span>
                       )}
                     </div>
-                    <h2 className="text-[#f0ece4] text-2xl md:text-[1.8rem] font-bold leading-[1.15] mb-3 group-hover:text-[#c9a96e] transition-colors duration-300" style={{ fontFamily: "var(--font-display)" }}>
+                    <h2 className="lm-post-card-title text-[#f0ece4] text-2xl md:text-[1.8rem] font-bold leading-[1.15] mb-3 group-hover:text-[#c9a96e] transition-colors duration-300" style={{ fontFamily: "var(--font-display)" }}>
                       {post.title}
                     </h2>
-                    <p className="text-[#a09a90] text-[13px] leading-relaxed">
+                    <p className="lm-post-excerpt text-[#a09a90] text-[13px] leading-relaxed">
                       {post.excerpt || "The first chapter is being written. Check back soon."}
                     </p>
                     <p className="text-[#c9a96e] text-[10px] tracking-[0.3em] uppercase mt-6" style={{ fontFamily: "var(--font-mono)" }}>
