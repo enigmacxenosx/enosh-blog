@@ -1,7 +1,7 @@
 import { Pause, Play, Volume2, VolumeX } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-const TRACK_URL = "/audio/areyouhiding-bass-treble-boosted.mp3";
+const TRACK_URL = "/audio/bittersweet-dreams.mp3";
 
 export default function SiteSoundtrack() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -69,9 +69,9 @@ export default function SiteSoundtrack() {
           <p className="truncate text-[10px] uppercase tracking-[0.2em] text-[#c9a96e]" style={{ fontFamily: "var(--font-mono)" }}>
             Site soundtrack
           </p>
-          <p className="truncate text-sm text-[#f0ece4]">Are You Hiding — slowed</p>
+          <p className="truncate text-sm text-[#f0ece4]">Bittersweet Dreams</p>
           <p className="mt-0.5 text-[10px] uppercase tracking-[0.14em] text-[#a09a90]" style={{ fontFamily: "var(--font-mono)" }}>
-            Bass + treble boost
+            David Kushner
           </p>
         </div>
 
@@ -90,4 +90,3 @@ export default function SiteSoundtrack() {
     </aside>
   );
 }
-

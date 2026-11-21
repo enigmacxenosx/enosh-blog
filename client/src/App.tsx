@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
+import { MotionConfig } from "framer-motion";
 import ErrorBoundary from "./components/ErrorBoundary";
 import SiteSoundtrack from "./components/SiteSoundtrack";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -38,9 +39,11 @@ function App() {
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
-          <Toaster />
-          <Router />
-          <SiteSoundtrack />
+          <MotionConfig reducedMotion="user">
+            <Toaster />
+            <Router />
+            <SiteSoundtrack />
+          </MotionConfig>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

@@ -348,7 +348,7 @@ function HireSection() {
             <div className="lg:col-span-5 space-y-3">
               {[
                 { icon: MessageCircle, label: "WhatsApp", handle: "0798 303 978", href: "https://wa.me/254798303978" },
-                { icon: Mail, label: "Work Email", handle: "Get in touch via WhatsApp", href: "https://wa.me/254798303978" },
+                { icon: Mail, label: "Work Email", handle: "Enosxtech@gmail.com", href: "mailto:Enosxtech@gmail.com" },
                 { icon: Instagram, label: "Instagram", handle: "@engima_cx", href: "https://instagram.com/engima_cx" },
                 { icon: Facebook, label: "Facebook", handle: "Enosx Aura", href: "https://facebook.com/enosxaura" },
               ].map((c, i) => (
