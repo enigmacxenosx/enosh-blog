@@ -46,22 +46,15 @@ const BASE_PHOTOS = [
   { src: PHOTOS.shades, caption: "The Vibe", sub: "Chapter 002 — Confidence" },
   { src: PHOTOS.portrait, caption: "Reflections", sub: "Chapter 003 — Mirror Work" },
   { src: PHOTOS.hustle, caption: "Grind Mode", sub: "Chapter 004 — The Come Up" },
-  { src: "/gallery/chapter-005-shadow.jpg", caption: "Shadow Play", sub: "Chapter 005 — Low Light" },
-  { src: "/gallery/chapter-006-blue-hour.jpg", caption: "Blue Hour", sub: "Chapter 006 — Electric Blue" },
-  { src: "/gallery/chapter-007-monochrome.jpg", caption: "Monochrome", sub: "Chapter 007 — No Filter" },
-  { src: "/gallery/chapter-008-window-light.jpg", caption: "Window Light", sub: "Chapter 008 — In Focus" },
-  { src: "/gallery/chapter-009-close-up.jpg", caption: "Close Up", sub: "Chapter 009 — Presence" },
-  { src: "/gallery/chapter-010-motion.jpg", caption: "In Motion", sub: "Chapter 010 — Keep Moving" },
   { src: "/gallery/chapter-011-electric-blue.jpg", caption: "Electric Blue", sub: "Chapter 011 — New Energy" },
-  { src: "/gallery/chapter-012-violet.jpg", caption: "Violet Haze", sub: "Chapter 012 — After Hours" },
   { src: "/gallery/chapter-013-lamlok.jpg", caption: "Lamlok", sub: "Chapter 013 — Street Uniform" },
-  { src: "/gallery/chapter-014-street-collage.png", caption: "Street Collage", sub: "Chapter 014 — The Collective" },
-  { src: "/gallery/chapter-015-red-wall.png", caption: "Red Wall", sub: "Chapter 015 — Contrast" },
-  { src: "/gallery/chapter-016-covered-face.png", caption: "Covered Face", sub: "Chapter 016 — Anonymous" },
-  { src: "/gallery/chapter-017-grid-study.png", caption: "Grid Study", sub: "Chapter 017 — Fragments" },
-  { src: "/gallery/chapter-018-nine-frames.png", caption: "Nine Frames", sub: "Chapter 018 — Many Sides" },
-  { src: "/gallery/chapter-019-reflections.png", caption: "Reflections", sub: "Chapter 019 — Looking Back" },
-  { src: "/gallery/chapter-020-profile.png", caption: "Profile", sub: "Chapter 020 — Side View" },
+  { src: "/gallery/chapter-014-street-collage.webp", caption: "Street Collage", sub: "Chapter 014 — The Collective" },
+  { src: "/gallery/chapter-015-red-wall.webp", caption: "Red Wall", sub: "Chapter 015 — Contrast" },
+  { src: "/gallery/chapter-016-covered-face.webp", caption: "Covered Face", sub: "Chapter 016 — Anonymous" },
+  { src: "/gallery/chapter-017-grid-study.webp", caption: "Grid Study", sub: "Chapter 017 — Fragments" },
+  { src: "/gallery/chapter-018-nine-frames.webp", caption: "Nine Frames", sub: "Chapter 018 — Many Sides" },
+  { src: "/gallery/chapter-019-reflections.webp", caption: "Reflections", sub: "Chapter 019 — Looking Back" },
+  { src: "/gallery/chapter-020-profile.webp", caption: "Profile", sub: "Chapter 020 — Side View" },
 ];
 
 /* ─── Upload Dialog Component ─── */
@@ -310,54 +303,50 @@ export default function Gallery() {
       {/* ─── Photo Grid ─── */}
       <section className="pb-28 md:pb-36 bg-[#0a0a0a]">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          {isLoading ? (
-            <div className="flex items-center justify-center py-20">
-              <Camera className="w-8 h-8 text-[#c9a96e]/30 animate-pulse" />
-            </div>
-          ) : (
-            <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
-              <AnimatePresence>
-                {photos.map((photo, i) => (
-                  <motion.div
-                    key={`${photo.src}-${i}`}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: i * 0.08, ease: [0.23, 1, 0.32, 1] }}
-                    className="relative group break-inside-avoid"
-                  >
-                    <img
-                      src={photo.src}
-                      alt={photo.caption}
-                      className="w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-                      style={{
-                        filter: "brightness(0.88) contrast(1.02) saturate(0.95)",
-                      }}
-                    />
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
-                    {/* Caption */}
-                    <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-400">
-                      <p className="text-[#c9a96e] text-[9px] tracking-[0.3em] uppercase mb-1" style={{ fontFamily: "var(--font-mono)" }}>
-                        {photo.sub}
-                      </p>
-                      <p className="text-[#f0ece4] text-lg font-medium" style={{ fontFamily: "var(--font-display)" }}>
-                        {photo.caption}
-                      </p>
-                    </div>
-                    {/* Delete button (admin only) */}
-                    {!authLoading && isAuthenticated && isAdmin && photo.id && (
-                      <button
-                        onClick={() => handleDelete(photo.id!)}
-                        className="absolute top-3 right-3 w-8 h-8 bg-[#0a0a0a]/70 border border-red-500/30 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-red-500/20"
-                      >
-                        <Trash2 className="w-3.5 h-3.5 text-red-400" />
-                      </button>
-                    )}
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </div>
-          )}
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
+            <AnimatePresence>
+              {photos.map((photo, i) => (
+                <motion.div
+                  key={`${photo.src}-${i}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.45, delay: Math.min(i * 0.025, 0.25), ease: [0.23, 1, 0.32, 1] }}
+                  className="relative group break-inside-avoid"
+                >
+                  <img
+                    src={photo.src}
+                    alt={photo.caption}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                    style={{
+                      filter: "brightness(0.88) contrast(1.02) saturate(0.95)",
+                    }}
+                  />
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+                  {/* Caption */}
+                  <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-400">
+                    <p className="text-[#c9a96e] text-[9px] tracking-[0.3em] uppercase mb-1" style={{ fontFamily: "var(--font-mono)" }}>
+                      {photo.sub}
+                    </p>
+                    <p className="text-[#f0ece4] text-lg font-medium" style={{ fontFamily: "var(--font-display)" }}>
+                      {photo.caption}
+                    </p>
+                  </div>
+                  {/* Delete button (admin only) */}
+                  {!authLoading && isAuthenticated && isAdmin && photo.id && (
+                    <button
+                      onClick={() => handleDelete(photo.id!)}
+                      className="absolute top-3 right-3 w-8 h-8 bg-[#0a0a0a]/70 border border-red-500/30 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-red-500/20"
+                    >
+                      <Trash2 className="w-3.5 h-3.5 text-red-400" />
+                    </button>
+                  )}
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
 
           {/* Empty state hint */}
           {photos.length <= BASE_PHOTOS.length && !isLoading && (
