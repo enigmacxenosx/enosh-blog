@@ -1,12 +1,12 @@
 # Enosh Blog
 
-Enosh Blog is a personal publishing platform for **Enosh Yeswa**, designed in an Editorial Noir style: dark, typographic, and magazine-inspired. It is part of the [Enosx Technologies](https://github.com/enigmacxenosx) portfolio.
+Enosh Blog is a personal publishing platform for **Enosh Yeswa**, with a warm, light editorial interface inspired by the supplied Lumora design reference: generous spacing, Onest typography, soft neutral surfaces, and restrained burnt-copper accents. It is part of the [Enosx Technologies](https://github.com/enigmacxenosx) portfolio.
 
-[![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6)](https://www.typescriptlang.org/) [![Live project](https://img.shields.io/badge/design-Editorial%20Noir-111827)](https://github.com/enigmacxenosx/enosh-blog)
+[![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6)](https://www.typescriptlang.org/) [![Live project](https://img.shields.io/badge/design-Lumora--inspired-b15f2c)](https://github.com/enigmacxenosx/enosh-blog)
 
 ## Features
 
-- Editorial Noir design system with serif-forward typography and restrained motion.
+- Lumora-inspired design system with clean surfaces, rounded editorial cards, Onest typography, and restrained motion.
 - Magazine-style post listing and detail pages.
 - Reusable component showcase and case-study layouts.
 - Server-rendered blog API with Drizzle ORM.

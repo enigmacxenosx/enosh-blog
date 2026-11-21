@@ -247,7 +247,7 @@ export default function Posts() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]" style={{ fontFamily: "var(--font-body)" }}>
+    <div className="lumora-page min-h-screen bg-[#0a0a0a]" style={{ fontFamily: "var(--font-body)" }}>
       {/* ─── Nav Bar ─── */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-white/5">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between py-4">

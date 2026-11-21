@@ -1,0 +1,11 @@
+{
+  "routes": [
+    { "path": "/", "title": "Enosh" },
+    { "path": "/gallery", "title": "Gallery — Enosh" },
+    { "path": "/enosx", "title": "Enosx Studio" },
+    { "path": "/enosx/case-studies/editorial-noir", "title": "Design Case Study" },
+    { "path": "/posts", "title": "Chapters — Enosh" },
+    { "path": "/posts/:slug", "title": "Chapter — Enosh" },
+    { "path": "/404", "title": "Page not found — Enosh" }
+  ]
+}

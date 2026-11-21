@@ -48,10 +48,11 @@ function NavBar() {
   }, []);
   return (
     <motion.nav
+      data-scrolled={scrolled}
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`lumora-photo-nav fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? "bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/5"
           : "bg-transparent"
@@ -96,7 +97,7 @@ function HeroSection() {
   const heroOpacity = useTransform(scrollY, [0, 600], [1, 0]);
   const heroY = useTransform(scrollY, [0, 600], [0, 120]);
   return (
-    <section className="relative min-h-screen flex items-end overflow-hidden bg-[#0a0a0a]">
+    <section className="lumora-photo-hero relative min-h-screen flex items-end overflow-hidden bg-[#0a0a0a]">
       <div className="absolute inset-0">
         <img src={HERO_BG} alt="" className="w-full h-full object-cover opacity-40" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/60 to-[#0a0a0a]/30" />
@@ -406,7 +407,7 @@ function Footer() {
 /* ─── PAGE ─── */
 export default function Enosx() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]" style={{ fontFamily: "var(--font-body)" }}>
+    <div className="lumora-page min-h-screen bg-[#0a0a0a]" style={{ fontFamily: "var(--font-body)" }}>
       <NavBar />
       <HeroSection />
       <WorkSection />

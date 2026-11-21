@@ -1,52 +1,19 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { AlertCircle, Home } from "lucide-react";
-import { useLocation } from "wouter";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { Link } from "wouter";
 
 export default function NotFound() {
-  const [, setLocation] = useLocation();
-
-  const handleGoHome = () => {
-    setLocation("/");
-  };
-
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
-      <Card className="w-full max-w-lg mx-4 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-        <CardContent className="pt-8 pb-8 text-center">
-          <div className="flex justify-center mb-6">
-            <div className="relative">
-              <div className="absolute inset-0 bg-red-100 rounded-full animate-pulse" />
-              <AlertCircle className="relative h-16 w-16 text-red-500" />
-            </div>
-          </div>
-
-          <h1 className="text-4xl font-bold text-slate-900 mb-2">404</h1>
-
-          <h2 className="text-xl font-semibold text-slate-700 mb-4">
-            Page Not Found
-          </h2>
-
-          <p className="text-slate-600 mb-8 leading-relaxed">
-            Sorry, the page you are looking for doesn't exist.
-            <br />
-            It may have been moved or deleted.
-          </p>
-
-          <div
-            id="not-found-button-group"
-            className="flex flex-col sm:flex-row gap-3 justify-center"
-          >
-            <Button
-              onClick={handleGoHome}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
-            >
-              <Home className="w-4 h-4 mr-2" />
-              Go Home
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+    <main className="lumora-page" style={{ minHeight: "100vh", display: "grid", placeItems: "center", padding: "2rem" }}>
+      <section style={{ width: "min(100%, 42rem)", padding: "clamp(2rem,7vw,5rem)", border: "1px solid #e7e4df", borderRadius: "1.8rem", background: "linear-gradient(145deg,#fff,#f7f5f2)" }}>
+        <p className="lm-kicker">A little off the map</p>
+        <p style={{ marginTop: "2rem", color: "#b15f2c", fontSize: ".78rem", letterSpacing: ".12em" }}>404 / NOT FOUND</p>
+        <h1 style={{ marginTop: ".7rem", fontSize: "clamp(2.8rem,8vw,5rem)", lineHeight: 1, fontWeight: 600, letterSpacing: "-.07em" }}>This page wandered off.</h1>
+        <p style={{ maxWidth: "29rem", marginTop: "1.1rem", color: "#77736f", lineHeight: 1.7 }}>The address may have changed, or the page may never have been here. Let’s get you back to the stories.</p>
+        <div style={{ display: "flex", gap: ".8rem", flexWrap: "wrap", marginTop: "2rem" }}>
+          <Link href="/" className="lm-cta"><ArrowLeft size={16} /> Back home</Link>
+          <Link href="/posts" className="lm-outline-link">Browse chapters <ArrowUpRight size={15} /></Link>
+        </div>
+      </section>
+    </main>
   );
 }

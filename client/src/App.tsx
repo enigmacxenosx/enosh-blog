@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
@@ -15,23 +16,27 @@ import CaseStudyEditorialNoir from "./pages/CaseStudyEditorialNoir";
 function Router() {
   return (
     <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/gallery"} component={Gallery} />
-      <Route path={"/enosx"} component={Enosx} />
-      <Route path={"/enosx/case-studies/editorial-noir"} component={CaseStudyEditorialNoir} />
-      <Route path={"/posts/:slug"} component={PostDetail} />
-      <Route path={"/posts"} component={Posts} />
-      <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
+      <Route path="/" component={Home} />
+      <Route path="/gallery" component={Gallery} />
+      <Route path="/enosx" component={Enosx} />
+      <Route path="/enosx/case-studies/editorial-noir" component={CaseStudyEditorialNoir} />
+      <Route path="/posts/:slug" component={PostDetail} />
+      <Route path="/posts" component={Posts} />
+      <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
   );
 }
 
 function App() {
+  useEffect(() => {
+    document.documentElement.classList.add("lumora-theme");
+    return () => document.documentElement.classList.remove("lumora-theme");
+  }, []);
+
   return (
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="dark">
+      <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
           <Router />
