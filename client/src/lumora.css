@@ -325,22 +325,38 @@ body { background: var(--lumora-paper); color: var(--lumora-ink); }
   .lm-post-meta { column-gap:.6rem; }
 }
 
-/* Pointer-responsive details adapted from Lumora's cursor-led interaction language. */
+/* Orange cursor reveal: Lumora-style pointer-painted color layer, adapted to Enosh imagery. */
+.lm-image-frame .lm-orange-reveal {
+  position:absolute;z-index:1;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 24%;
+  opacity:0;pointer-events:none;filter:sepia(1) saturate(4.5) hue-rotate(-12deg) contrast(1.08) brightness(1.06);
+  -webkit-mask-image:radial-gradient(circle 190px at var(--pointer-x,50%) var(--pointer-y,50%),#000 0%,#000 52%,transparent 100%);
+  mask-image:radial-gradient(circle 190px at var(--pointer-x,50%) var(--pointer-y,50%),#000 0%,#000 52%,transparent 100%);
+  transition:opacity .16s ease;
+}
+.lm-image-frame:after,.lm-note-card:after,.lm-project-card:after,.lm-photo-card:after,
+.lm-editorial-page .group:has(img):after,.lm-post-cover:after,.lm-post-detail-cover:after,
+.lumora-photo-hero:after {
+  content:"";position:absolute;z-index:2;inset:0;pointer-events:none;opacity:0;transition:opacity .24s ease;
+  background:radial-gradient(190px circle at var(--pointer-x,50%) var(--pointer-y,50%),rgba(255,91,0,.48),rgba(255,116,12,.24) 38%,rgba(255,135,36,.1) 58%,transparent 78%);
+}
+.lm-image-frame:after { background:radial-gradient(235px circle at var(--pointer-x,50%) var(--pointer-y,50%),rgba(255,100,0,.28),rgba(255,121,20,.14) 48%,transparent 78%); }
+.lm-image-frame:after,.lm-note-card:after,.lm-project-card:after,.lm-photo-card:after,
+.lm-editorial-page .group:has(img):after,.lm-post-cover:after,.lm-post-detail-cover:after { border-radius:inherit; }
+.lm-post-cover,.lm-post-detail-cover { position:relative; }
+.lumora-photo-hero:after { z-index:1;opacity:0;background:radial-gradient(320px circle at var(--pointer-x,50%) var(--pointer-y,50%),rgba(255,91,0,.27),rgba(255,116,12,.12) 48%,transparent 78%); }
 @media (hover:hover) and (pointer:fine) {
-  .lm-image-frame:after,.lm-note-card:after,.lm-project-card:after,.lm-photo-card:after {
-    content:"";position:absolute;z-index:2;inset:0;pointer-events:none;opacity:0;transition:opacity .35s ease;
-    background:radial-gradient(190px circle at var(--pointer-x,50%) var(--pointer-y,50%),rgba(177,95,44,.2),rgba(207,128,71,.08) 42%,transparent 74%);
-  }
-  .lm-image-frame:after { background:radial-gradient(230px circle at var(--pointer-x,50%) var(--pointer-y,50%),rgba(255,239,218,.25),rgba(177,95,44,.1) 48%,transparent 78%);mix-blend-mode:screen; }
-  .lm-image-frame:hover:after,.lm-note-card:hover:after,.lm-project-card:hover:after,.lm-photo-card:hover:after { opacity:1; }
-  .lm-note-card:hover,.lm-project-card:hover { transform:translateY(-7px);border-color:rgba(177,95,44,.48);box-shadow:0 20px 48px rgba(25,20,16,.11); }
+  .lm-image-frame:hover .lm-orange-reveal { opacity:.86; }
+  .lm-image-frame:hover:after,.lm-note-card:hover:after,.lm-project-card:hover:after,.lm-photo-card:hover:after,
+  .lm-editorial-page .group:has(img):hover:after,.lm-post-cover:hover:after,.lm-post-detail-cover:hover:after,
+  .lumora-photo-hero:hover:after { opacity:1; }
+  .lm-note-card:hover,.lm-project-card:hover { transform:translateY(-7px);border-color:rgba(255,105,0,.55);box-shadow:0 20px 48px rgba(255,105,0,.15); }
   .lm-note-card .lm-card-arrow,.lm-project-link svg { transition:transform .35s var(--lm-ease); }
   .lm-note-card:hover .lm-card-arrow { transform:translate(3px,-3px);color:var(--lumora-accent); }
   .lm-project-card:hover .lm-project-link svg { transform:translate(3px,-3px); }
   .lm-photo-card:hover img { transform:scale(1.055); }
 }
-.lm-image-frame:after,.lm-note-card:after,.lm-project-card:after,.lm-photo-card:after { border-radius:inherit; }
 .lm-note-card:focus-visible,.lm-project-card:focus-visible,.lm-photo-card:focus-visible { outline:2px solid var(--lumora-accent);outline-offset:4px; }
 @media(prefers-reduced-motion:reduce) {
-  .lm-image-frame:after,.lm-note-card:after,.lm-project-card:after,.lm-photo-card:after { transition:none; }
+  .lm-image-frame:after,.lm-note-card:after,.lm-project-card:after,.lm-photo-card:after,.lm-orange-reveal,
+  .lm-editorial-page .group:has(img):after,.lm-post-cover:after,.lm-post-detail-cover:after,.lumora-photo-hero:after { transition:none; }
 }

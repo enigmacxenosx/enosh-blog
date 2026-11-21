@@ -100,7 +100,11 @@ export default function Home() {
               <div className="lm-hero-note"><span className="lm-note-dot" /> Building the future from Kenya.</div>
             </div>
             <div className="lm-hero-visual">
-              <div className="lm-image-frame" onPointerMove={trackPointerGlow}><img src="/enosh-1.jpg" alt="Enosh, framed in an everyday moment" fetchPriority="high" /><span className="lm-image-index">NAIROBI · 2026</span></div>
+              <div className="lm-image-frame" onPointerMove={trackPointerGlow}>
+                <img src="/enosh-1.jpg" alt="Enosh, framed in an everyday moment" fetchPriority="high" />
+                <img className="lm-orange-reveal" src="/enosh-1.jpg" alt="" aria-hidden="true" />
+                <span className="lm-image-index">NAIROBI · 2026</span>
+              </div>
               <div className="lm-image-caption"><span>PERSONAL ARCHIVE / VOL. 01</span><span>Stories as they happen.</span></div>
               <span className="lm-hero-watermark" aria-hidden="true">ENOSH</span>
             </div>

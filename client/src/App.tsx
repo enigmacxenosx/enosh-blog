@@ -32,7 +32,22 @@ function Router() {
 function App() {
   useEffect(() => {
     document.documentElement.classList.add("lumora-theme");
-    return () => document.documentElement.classList.remove("lumora-theme");
+    const handlePointerMove = (event: PointerEvent) => {
+      const target = event.target instanceof Element
+        ? event.target.closest<HTMLElement>(
+            ".lm-image-frame, .lm-note-card, .lm-project-card, .lm-photo-card, .lm-editorial-page .group:has(img), .lm-post-cover, .lm-post-detail-cover, .lumora-photo-hero",
+          )
+        : null;
+      if (!target) return;
+      const bounds = target.getBoundingClientRect();
+      target.style.setProperty("--pointer-x", `${event.clientX - bounds.left}px`);
+      target.style.setProperty("--pointer-y", `${event.clientY - bounds.top}px`);
+    };
+    document.addEventListener("pointermove", handlePointerMove, { passive: true });
+    return () => {
+      document.removeEventListener("pointermove", handlePointerMove);
+      document.documentElement.classList.remove("lumora-theme");
+    };
   }, []);
 
   return (
